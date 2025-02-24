@@ -2,18 +2,32 @@
 #include <cstdio>
 using namespace std;
 
-int n, d[4005], a[3];
+int n;
+
+class Stu {
+private:
+    string name, cre;
+    int id;
+public:
+    Stu(string name, int id, string cre) : name(name), id(id), cre(cre) {};
+
+    void reset() {
+        name = "None";
+        id = 0;
+        cre = "B0";
+    }
+
+    void pri() {
+        cout << name << " " << "id: " << id << " " << cre << '\n';
+    }
+};
+
 int main()
 {
-    int i, j;
-    cin >> n >> a[0] >> a[1] >> a[2];
-    d[0] = 0;
-    for (i = 1; i <= n; i++) {
-        d[i] = -1;
-        for (j = 0; j < 3; j++) {
-            if (i - a[j] >= 0 && d[i - a[j]] != -1) d[i] = max(d[i], d[i - a[j]] + 1);
-        }
-    }
-    cout << d[n];
+    Stu z1("seonkyu", 20220487, "A+");
+    z1.pri();
+    z1.reset();
+    z1.pri();
+
     return 0;
 }
