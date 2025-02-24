@@ -1,67 +1,31 @@
 #include <iostream>
-#include <string>
-
+#include <cstdio>
+#include <cmath>
+#define N 505
 using namespace std;
-struct Point {
-    int x = 0;
-    int y = 0;
 
-    void display() const {
-        std::cout << "Point(" << x << ", " << y << ")" << std::endl;
+typedef long long ll;
+ll n, l, r, md, ans, cnt, cnt2;
+int main()
+{
+    ll i, j, t;
+    freopen("input.txt", "r", stdin);
+    ios::sync_with_stdio(0); cin.tie(0);
+    cin >> n;
+    l = 1;
+    r = 100000;
+    while (l < r) {
+        md = (l + r) / 2;
+        cnt = md * 4 + 1;
+        cnt2 = 0;
+        for (i = 1; i < md; i++) {
+            t = sqrt((double)(md * md - i * i));
+            cnt2 += t;
+        }
+        cnt += cnt2 * 4;
+        if (cnt >= n) ans = r = md;
+        else l = md + 1;
     }
-
-    void mod(int z, int n) {
-        if (z == 0) x = n;
-        else y = n;
-    }
-};
-
-class Person {
-private:
-    string name;
-    int age;
-
-public:
-    Person(string p1, int p2) : name(p1), age(p2) {}
-
-    void introduce() const {
-        std::cout << "Hi, I'm " << name << ", " << age << " years old." << std::endl;
-    }
-};
-
-class Taehee {
-private:
-    int id, num;
-    string cre;
-public:
-    Taehee(int id, int num, string cre) : id(id), num(num), cre(cre) {}
-
-    void pri() const {
-        cout << id << " " << num << " " << cre << '\n';
-    }
-};
-
-int main() {
-//    Point p;
-//    p.display();
-//    p.x = 20;
-//    p.display();
-//    p.mod(0, 0);
-//    p.display();
-//    p.mod(1, 100);
-//    p.display();
-//
-//    Point q;
-//    q.mod(0, 100);
-//    q.display();
-//
-//    Point z;
-//    z.display();
-
-    //Person person("Alice", 25);
-    //person.introduce();
-
-    Taehee taehee(1001, 3, "A+");
-    taehee.pri();
+    cout << ans;
     return 0;
 }
